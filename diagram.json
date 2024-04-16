@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "author": "SHRIE GANESH S",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -48.06,
+      "left": -185.83,
+      "attrs": { "size": "17" }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper2",
+      "top": -47.77,
+      "left": 146.05,
+      "attrs": { "size": "17" }
+    },
+    { "type": "wokwi-microsd-card", "id": "sd1", "top": -90.74, "left": -12.74, "attrs": {} },
+    { "type": "wokwi-a4988", "id": "drv1", "top": 124.62, "left": -196.22, "attrs": {} },
+    { "type": "wokwi-a4988", "id": "drv2", "top": 131.45, "left": 122.07, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 64.69, "left": 120.63, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 170.18, "left": 232.98, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 166.53, "left": -94.49, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": 72.55, "left": -20.73, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "sd1:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "sd1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "sd1:DO", "esp:D19", "green", [ "h0" ] ],
+    [ "sd1:SCK", "esp:D18", "green", [ "h0" ] ],
+    [ "sd1:DI", "esp:D23", "green", [ "h0" ] ],
+    [ "sd1:CS", "esp:D5", "green", [ "h0" ] ],
+    [ "drv1:VDD", "esp:3V3", "green", [ "h0" ] ],
+    [ "drv2:VDD", "esp:3V3", "green", [ "h0" ] ],
+    [ "drv1:GND.1", "esp:GND.1", "black", [ "v0" ] ],
+    [ "drv2:GND.1", "esp:GND.1", "black", [ "v0" ] ],
+    [ "drv1:RESET", "drv1:SLEEP", "green", [ "h0" ] ],
+    [ "drv2:RESET", "drv2:SLEEP", "green", [ "h0" ] ],
+    [ "stepper1:A-", "drv1:1B", "green", [ "v0" ] ],
+    [ "stepper1:A+", "drv1:1A", "green", [ "v0" ] ],
+    [ "stepper1:B+", "drv1:2A", "green", [ "v0" ] ],
+    [ "stepper1:B-", "drv1:2B", "green", [ "v0" ] ],
+    [ "stepper2:A-", "drv2:1B", "green", [ "v0" ] ],
+    [ "stepper2:A+", "drv2:1A", "green", [ "v0" ] ],
+    [ "stepper2:B+", "drv2:2A", "green", [ "v0" ] ],
+    [ "stepper2:B-", "drv2:2B", "green", [ "v0" ] ],
+    [ "drv2:VMOT", "vcc1:VCC", "green", [ "h0" ] ],
+    [ "drv2:GND.2", "gnd1:GND", "black", [ "h0" ] ],
+    [ "drv1:GND.2", "gnd2:GND", "black", [ "h0" ] ],
+    [ "drv1:VMOT", "vcc2:VCC", "green", [ "v-13.81", "h105.7" ] ],
+    [ "drv1:STEP", "esp:D12", "green", [ "h0" ] ],
+    [ "drv1:DIR", "esp:D13", "green", [ "h0" ] ],
+    [ "drv2:STEP", "esp:D25", "green", [ "h0" ] ],
+    [ "drv2:DIR", "esp:D26", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
